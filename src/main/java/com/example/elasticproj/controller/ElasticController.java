@@ -60,11 +60,12 @@ public class ElasticController {
         return elasticService.searchByFieldsInIndex(typeName, searchDto, pageable);
     }
 
-    @PostMapping(value = "/advanced-search")
-    public List<Page<Map<String, Object>>> searchArticlesByUniquePhraseForIndex(@RequestBody AdvancedIndexSearchDto advancedIndexSearchDto,
-                                                                                Pageable pageable) throws IOException {
-        return elasticService.searchByUniqueForIndexPhrase(advancedIndexSearchDto, pageable);
-    }
+    //todo do it properly in service without listing pages
+    //@PostMapping(value = "/advanced-search")
+    //public List<Page<Map<String, Object>>> searchArticlesByUniquePhraseForIndex(@RequestBody AdvancedIndexSearchDto advancedIndexSearchDto,
+    //                                                                            Pageable pageable) throws IOException {
+    //    return elasticService.searchByUniqueForIndexPhrase(advancedIndexSearchDto, pageable);
+    //}
 
     @PostMapping("/latest")
     public Page<Map<String, Object>> searchLatestArticleForSeveralIndices(@RequestParam(name = "typeNames") List<String> typeNames,
