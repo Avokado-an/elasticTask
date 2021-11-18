@@ -95,6 +95,6 @@ public class ElasticController {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(ElasticsearchException.class)
     public ResponseEntity<ResponseEntity<String>> handleElasticsearchException(ElasticsearchException ex) {
-        return ResponseEntity.status(403).body(ResponseEntity.status(403).body(ex.getMessage()));
+        return ResponseEntity.status(403).body(ResponseEntity.status(403).body(ex.getDetailedMessage()));
     }
 }

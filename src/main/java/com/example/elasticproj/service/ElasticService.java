@@ -94,20 +94,21 @@ public class ElasticService {
         );
     }
 
-    public List<Page<Map<String, Object>>> searchByUniqueForIndexPhrase(AdvancedIndexSearchDto advancedIndexSearchDto,
-                                                                        Pageable pageable) throws IOException {
-        List<Page<Map<String, Object>>> articles = new ArrayList<>();
-        for (IndexPhraseSearchDto indexPhraseSearchDto : advancedIndexSearchDto.getIndexUniqueSearchedPhrases()) {
-            SearchRequest searchRequest = createSearchRequest(indexPhraseSearchDto.getIndexName());
-            articles.add(searchByPhraseInFields(
-                    indexPhraseSearchDto.getFields(),
-                    searchRequest,
-                    indexPhraseSearchDto.getPhrase(),
-                    pageable)
-            );
-        }
-        return articles;
-    }
+    //todo do it properly without listing pages
+    //public List<Page<Map<String, Object>>> searchByUniqueForIndexPhrase(AdvancedIndexSearchDto advancedIndexSearchDto,
+    //                                                                    Pageable pageable) throws IOException {
+    //    List<Page<Map<String, Object>>> articles = new ArrayList<>();
+    //    for (IndexPhraseSearchDto indexPhraseSearchDto : advancedIndexSearchDto.getIndexUniqueSearchedPhrases()) {
+    //        SearchRequest searchRequest = createSearchRequest(indexPhraseSearchDto.getIndexName());
+    //        articles.add(searchByPhraseInFields(
+    //                indexPhraseSearchDto.getFields(),
+    //                searchRequest,
+    //                indexPhraseSearchDto.getPhrase(),
+    //                pageable)
+    //        );
+    //    }
+    //    return articles;
+    //}
 
     public Page<Map<String, Object>> searchLatestByFieldsInIndices(List<String> typeNames, FieldSearchDto fieldSearchDto,
                                                                    Pageable pageable) throws IOException {
