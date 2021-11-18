@@ -11,8 +11,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.elasticsearch.client.ClientConfiguration;
 import org.springframework.data.elasticsearch.client.RestClients;
+import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
+import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
+import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
 
 @SpringBootApplication
+@EnableElasticsearchRepositories
 public class ElasticProjApplication {
     @Value("${elastic.host}")
     private String elasticsearchHost;
@@ -26,6 +30,11 @@ public class ElasticProjApplication {
         ClientConfiguration clientConfiguration =
                 ClientConfiguration.builder().connectedTo(elasticsearchHost).build();
         return RestClients.create(clientConfiguration).rest();
+    }
+
+    @Bean
+    public ElasticsearchOperations elasticsearchTemplate() {
+        return new ElasticsearchRestTemplate(elasticsearchClient());
     }
 
     @Bean
